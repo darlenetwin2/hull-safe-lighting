@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brian’s Marine Lighting | No-Drill Boat Lighting</title>
+  <meta name="description" content="Marine lighting designed to install without drilling through your hull. Bright, clean, and built for harsh conditions." />
+  <meta name="theme-color" content="#5b2cff" />
+
+  <style>
+    :root{
+      --bg:#070812;
+      --card:#0d1022;
+      --text:#eef0ff;
+      --muted:#b8bce6;
+      --line:rgba(255,255,255,.10);
+      --accent:#6a35ff;
+      --accent2:#29e3ff;
+      --good:#3dff9a;
+      --shadow: 0 18px 40px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(106,53,255,.35), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(41,227,255,.22), transparent 55%),
+        radial-gradient(1000px 600px at 60% 120%, rgba(61,255,154,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 22px; }
+
+    /* Top bar */
+    .top{
+      position:sticky; top:0; z-index:50;
+      background: rgba(7,8,18,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding: 14px 22px;
+      max-width:var(--max); margin:0 auto;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 25px rgba(106,53,255,.28);
+    }
+    .links{ display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font-weight:600; }
+    .links a{ padding:8px 10px; border-radius:10px; }
+    .links a:hover{ background: rgba(255,255,255,.06); color:var(--text); }
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#070812;
+      box-shadow: 0 18px 40px rgba(106,53,255,.22);
+    }
+
+    /* Hero */
+    .hero{ padding: 58px 0 18px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .links{ display:none; }
+    }
+
+    .hcard{
+      background: rgba(13,16,34,.70);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      color: var(--muted);
+      font-weight:800;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(61,255,154,.12);
+    }
+    h1{
+      margin: 12px 0 12px;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .heroBtns{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px; }
+    .pillRow{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px;
+      color: var(--muted);
+      font-weight:700;
+      font-size: 13px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .stat{
+      display:grid; gap:12px;
+    }
+    .statBox{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding: 16px;
+      border-radius: 16px;
+    }
+    .statBox b{ display:block; font-size: 18px; }
+    .statBox span{ color: var(--muted); font-weight:650; }
+
+    /* Sections */
+    section{ padding: 22px 0; }
+    .title{
+      font-size: 22px;
+      letter-spacing: -.3px;
+      margin: 0 0 12px;
+    }
+    .muted{ color: var(--muted); }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 900px){ .cards{ grid-template-columns: 1fr; } }
+    .card{
+      background: rgba(13,16,34,.65);
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .card h3{ margin: 6px 0 6px; font-size: 16px; letter-spacing:-.2px; }
+    .card p{ margin:0; color: var(--muted); }
+
+    .how{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    @media (max-width: 900px){ .how{ grid-template-columns: 1fr; } }
+    .step{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .num{
+      width:34px; height:34px; border-radius: 12px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(106,53,255,.45), rgba(41,227,255,.35));
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:900;
+    }
+    .step h3{ margin:10px 0 6px; }
+    .step p{ margin:0; color: var(--muted); }
+
+    /* Pricing */
+    .pricing{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    @media (max-width: 900px){ .pricing{ grid-template-columns: 1fr; } }
+    .priceCard{
+      border:1px solid var(--line);
+      background: rgba(13,16,34,.70);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .badge{
+      display:inline-flex;
+      font-weight:900;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color:#070812;
+      background: linear-gradient(135deg, var(--accent2), var(--good));
+    }
+    .priceCard h3{ margin: 10px 0 6px; }
+    .priceCard ul{ margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
+    .priceCard li{ margin: 6px 0; }
+    .priceTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 14px 14px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-weight:850;
+      letter-spacing:-.2px;
+    }
+    details p{ color: var(--muted); margin: 10px 0 0; }
+
+    /* Contact */
+    form{
+      display:grid; gap: 10px;
+    }
+    label{ font-weight:800; font-size: 13px; color: var(--muted); }
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(7,8,18,.6);
+      color: var(--text);
+      outline: none;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .formRow{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 900px){ .formRow{ grid-template-columns: 1fr; } }
+    .tiny{ font-size: 12px; color: var(--muted); }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding: 18px 0 36px;
+      color: var(--muted);
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          Brian’s Marine Lighting<br />
+          <span style="color:var(--muted); font-weight:700; font-size:12px;">No-drill boat lighting</span>
+        </div>
+      </div>
+
+      <div class="links" aria-label="Primary">
+        <a href="#why">Why it matters</a>
+        <a href="#how">How it works</a>
+        <a href="#kits">Kits</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="#contact">Get a quote</a>
+        <a class="btn primary" href="#kits">View kits</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="grid">
+        <div class="hcard">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> Built for boats. Designed to protect your hull.</div>
+          <h1>Boat lighting that installs without drilling your hull.</h1>
+          <p class="sub">
+            Bright, clean, marine-ready LED lighting designed to reduce the risk of leaks and damage caused by hull penetrations.
+            If you love your boat, you probably love the idea of fewer holes in it.
+          </p>
+
+          <div class="heroBtns">
+            <a class="btn primary" href="#contact">Request a quote</a>
+            <a class="btn" href="#how">See how it works</a>
+          </div>
+
+          <div class="pillRow" aria-label="Highlights">
+            <div class="pill">Marine-grade materials</div>
+            <div class="pill">Clean install</div>
+            <div class="pill">Water-resistant components</div>
+            <div class="pill">Built for salt + sun</div>
+          </div>
+        </div>
+
+        <div class="hcard stat" aria-label="Quick benefits">
+          <div class="statBox">
+            <b>No hull penetration</b>
+            <span>Designed to avoid drilling through the hull whenever possible.</span>
+          </div>
+          <div class="statBox">
+            <b>Safer visibility</b>
+            <span>Improve docking and night presence with targeted lighting.</span>
+          </div>
+          <div class="statBox">
+            <b>Looks like an upgrade</b>
+            <span>Clean lines, pro finish, and a custom feel.</span>
+          </div>
+          <div class="statBox">
+            <b>Install options</b>
+            <span>DIY-friendly or professional install support.</span>
+          </div>
+          <p class="tiny">
+            Note: exact installation method depends on your boat model and kit layout. We’ll confirm fit before you buy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2 class="title">Why it matters</h2>
+      <p class="muted">
+        Traditional lighting installs can involve drilling, sealing, and hoping nothing shifts over time. Brian’s approach focuses on
+        lighting that prioritizes hull protection and a clean installation.
+      </p>
+
+      <div class="cards" style="margin-top:12px;">
+        <div class="card">
+          <h3>Reduce leak risk</h3>
+          <p>Fewer penetrations means fewer potential failure points over the life of the boat.</p>
+        </div>
+        <div class="card">
+          <h3>Protect gelcoat + resale</h3>
+          <p>Cleaner installs help prevent cracking, corrosion points, and “what did the previous owner do?” energy.</p>
+        </div>
+        <div class="card">
+          <h3>Better light, smarter placement</h3>
+          <p>Purpose-built layouts for docking, accent, and visibility. Bright where you want it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2 class="title">How it works</h2>
+      <div class="how">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Plan your layout</h3>
+          <p>Pick a kit or request a custom layout based on your boat, goals, and power setup.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Mount without drilling</h3>
+          <p>Use the included mounting approach designed to avoid hull penetrations whenever possible.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Connect + enjoy</h3>
+          <p>Clean wiring, sealed connections, and lighting that looks like it came with the boat.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="kits">
+      <h2 class="title">Kits</h2>
+      <p class="muted">Start simple, then flex later. Most customers choose a kit, then expand.</p>
+
+      <div class="pricing" style="margin-top:12px;">
+        <div class="priceCard">
+          <div class="priceTop">
+            <h3>Docking & Deck Kit</h3>
+            <span class="badge">Popular</span>
+          </div>
+          <p class="muted">Focused, practical lighting where it matters most.</p>
+          <ul>
+            <li>Targeted brightness for docking</li>
+            <li>Clean install guidance</li>
+            <li>Marine-ready components</li>
+          </ul>
+        </div>
+
+        <div class="priceCard">
+          <div class="priceTop">
+            <h3>Accent Glow Kit</h3>
+            <span class="badge">Vibes</span>
+          </div>
+          <p class="muted">Under-gunnel or interior accent lighting that looks expensive.</p>
+          <ul>
+            <li>Soft ambient glow</li>
+            <li>Flexible placement</li>
+            <li>Easy add-on later</li>
+          </ul>
+        </div>
+
+        <div class="priceCard">
+          <div class="priceTop">
+            <h3>Custom Layout</h3>
+            <span class="badge">Pro</span>
+          </div>
+          <p class="muted">Built around your exact boat and use case.</p>
+          <ul>
+            <li>Boat-specific plan</li>
+            <li>Kit + install support</li>
+            <li>Best “factory look” result</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tiny" style="margin-top:10px;">
+        Replace kit names and details with Brian’s real product names and what’s included.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2 class="title">FAQ</h2>
+
+      <details>
+        <summary>Is this truly no-drill?</summary>
+        <p>
+          The goal is to avoid drilling through the hull whenever possible. Some boats or layouts may require exceptions.
+          We confirm your setup before you buy so you know what to expect.
+        </p>
+      </details>
+
+      <details>
+        <summary>Saltwater safe?</summary>
+        <p>
+          Components are selected for harsh marine environments, including moisture and corrosion exposure. Rinse and basic upkeep
+          still apply, because boats.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I install it myself?</summary>
+        <p>
+          Many customers do. If you’d rather have it installed, we can recommend a path based on your boat and comfort level.
+        </p>
+      </details>
+
+      <details>
+        <summary>What boats does it fit?</summary>
+        <p>
+          Most setups are adaptable. Send your boat make, model, and a couple photos, and we’ll recommend the right kit and layout.
+        </p>
+      </details>
+    </section>
+
+    <section id="contact">
+      <div class="grid">
+        <div class="hcard">
+          <h2 class="title" style="margin-top:0;">Request a quote</h2>
+          <p class="muted">
+            Tell us what you’ve got and what you want. We’ll recommend the simplest layout that gives you the best result.
+          </p>
+
+          <form id="quoteForm">
+            <div class="formRow">
+              <div>
+                <label for="name">Your name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="formRow">
+              <div>
+                <label for="boat">Boat make/model</label>
+                <input id="boat" name="boat" placeholder="Ex: Sea Ray 240 Sundeck" />
+              </div>
+              <div>
+                <label for="use">Goal</label>
+                <input id="use" name="use" placeholder="Docking lights, accent, both, custom" />
+              </div>
+            </div>
+
+            <div>
+              <label for="msg">Details</label>
+              <textarea id="msg" name="msg" placeholder="Where you want lighting, current setup, any constraints, and your timeline."></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send request</button>
+            <p class="tiny">
+              This form opens your email app to send the message (no database yet). If you want a real form, I can set up one for you.
+            </p>
+          </form>
+        </div>
+
+        <div class="hcard">
+          <h2 class="title" style="margin-top:0;">Contact</h2>
+          <p class="muted">Swap these for Brian’s real info.</p>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@briansmarinelighting.com">hello@briansmarinelighting.com</a></p>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Phone</h3>
+            <p><a href="tel:+15555551234">(555) 555-1234</a></p>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Service area</h3>
+            <p>Michigan and surrounding areas (update this).</p>
+          </div>
+
+          <p class="tiny" style="margin-top:12px;">
+            Tip: add 3–5 real photos of installs and the product. Nothing sells marine products like “look at it on an actual boat.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>© <span id="year"></span> Brian’s Marine Lighting. All rights reserved.</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="#contact">Get a quote</a>
+          <a class="btn" href="#why">Back to top</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Update year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // "Email form" submit that opens a mailto with prefilled content
+    const form = document.getElementById("quoteForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const boat = document.getElementById("boat").value.trim();
+      const use = document.getElementById("use").value.trim();
+      const msg = document.getElementById("msg").value.trim();
+
+      const subject = encodeURIComponent("Quote Request: Marine Lighting");
+      const body = encodeURIComponent(
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Boat: " + (boat || "(not provided)") + "\n" +
+        "Goal: " + (use || "(not provided)") + "\n\n" +
+        "Details:\n" + (msg || "(not provided)") + "\n"
+      );
+
+      // Replace with Brian’s real email:
+      const to = "hello@briansmarinelighting.com";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
